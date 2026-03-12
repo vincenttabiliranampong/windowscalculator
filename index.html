@@ -1,171 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Web Page</title>
+<title>Responsive Calculator</title>
 
-    <!-- ✅ Font Awesome for YouTube Icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #111;
-        color: white;
-    }
 
-    header {
-        text-align: center;
-        padding: 20px;
-        background-color: #000;
-        font-size: 28px;
-        font-weight: bold;
-    }
+*{
+box-sizing:border-box;
+}
 
-    .container {
-        display: grid;
-        gap: 20px;
-        padding: 20px;
-    }
+body{
+background:#f2f2f2;
+font-family:Segoe UI, Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
 
-    .movie-card {
-        background-color: #1e1e1e;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        transition: transform 0.3s;
-    }
+.calculator{
+width:300px;
+background:white;
+border:1px solid #ccc;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+padding:10px;
+}
 
-    .movie-card:hover {
-        transform: scale(1.05);
-    }
+#display{
+width:100%;
+height:60px;
+font-size:24px;
+text-align:right;
+padding:10px;
+border:none;
+background:#e6e6e6;
+margin-bottom:10px;
+}
 
-    .movie-card img {
-        width: 100%;
-        height: 350px;
-        object-fit: cover;
-    }
+.buttons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+}
 
-    .movie-info {
-        padding: 15px;
-    }
+button{
+height:55px;
+font-size:18px;
+border:none;
+background:#f7f7f7;
+cursor:pointer;
+}
 
-    .movie-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+button:hover{
+background:#e0e0e0;
+}
 
-    .movie-description {
-        font-size: 14px;
-        color: #ccc;
-    }
+.operator{
+background:#dcdcdc;
+}
 
-    /* Desktop >900px */
-    @media (min-width: 901px) {
-        .container {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
+.equal{
+background:#4CAF50;
+color:white;
+}
 
-    /* Tablet 601px-900px */
-    @media (min-width: 601px) and (max-width: 900px) {
-        .container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+.equal:hover{
+background:#43a047;
+}
 
-    /* Mobile <601px */
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
+.zero{
+grid-column:span 2;
+}
+
+.info{
+background:#2196F3;
+color:white;
+}
+
+/* TABLET */
+@media (max-width:900px){
+
+.calculator{
+width:260px;
+}
+
+button{
+height:50px;
+font-size:17px;
+}
+
+#display{
+font-size:22px;
+}
+
+}
+
+/* MOBILE */
+@media (max-width:600px){
+
+.calculator{
+width:95%;
+max-width:320px;
+}
+
+button{
+height:45px;
+font-size:16px;
+}
+
+#display{
+height:55px;
+font-size:20px;
+}
+
+}
 
 </style>
 </head>
 
 <body>
 
-<header>
-    🎬 The Best 5 New Movies
-</header>
+<div class="calculator">
 
-<div class="container">
+<input type="text" id="display" readonly>
 
-    <div class="movie-card">
-        <img src="images/Companion.jpg/300x450" alt="Companion">
-            <div class="movie-title">Companion</div>
-            <div class="movie-links">
-                <a href="https://www.hbomax.com/ph/en/movies/companion/47556360-0bbf-4e3d-8d6d-53a0179e2153/" target="_blank">Watch on HBO Max</a>
-                    <a href="https://tv.apple.com/us/movie/companion/umc.cmc.4ucrwm6dvaf3z2e9alwmfyo2x/" target="_blank">Watch on Apple TV</a>
-                    <a href="https://www.youtube.com/watch?v=Qr_kX0D3DNA/" target="_blank">
-                        <i class="fa-brands fa-youtube" style="color:red; margin-right:6px;"></i>
-                        Companion | Official Trailer
-                    </a>
-            </div>
-        </div>
-    </div>
+<div class="buttons">
 
-    <div class="movie-card">
-        <img src="images/snowwhite.jpg/300x450" alt="Snow White">
-        <div class="movie-title">Snow White</div>
-            <div class="movie-links">
-                <a href="https://tv.apple.com/us/movie/snow-white/umc.cmc.6u2jckaqzln7dp4mb403r4t3y/" target="_blank">Watch on Apple TV</a>
-                    <a href="https://moviesanywhere.com/movie/snow-white-2025/" target="_blank">Watch on Movies Anywhere</a>
-                    <a href="https://www.youtube.com/watch?v=iV46TJKL8cU/" target="_blank">
-                        <i class="fa-brands fa-youtube" style="color:red; margin-right:6px;"></i>
-                        Disney’s Snow White | Official Trailer | In Theaters March 21
-                    </a>
-            </div>
-        </div>
-    </div>
+<button onclick="clearDisplay()">C</button>
+<button onclick="backspace()">⌫</button>
+<button onclick="press('/')">÷</button>
+<button onclick="press('*')">×</button>
 
-    <div class="movie-card">
-        <img src="images/havoc.jpg/300x450" alt="Havoc">
-            <div class="movie-title">Havoc</div>
-            <div class="movie-links">
-                <a href="https://www.netflix.com/ph-en/title/81330790/" target="_blank">Watch on Netflix</a>
-                    <a href="https://www.imdb.com/title/tt14123284/" target="_blank">See Info on IMDb</a>
-                    <a href="https://www.youtube.com/watch?v=6txjTWLoSc8/" target="_blank">
-                        <i class="fa-brands fa-youtube" style="color:red; margin-right:6px;"></i>
-                        HAVOC | Official Trailer | Netflix
-                    </a>
-            </div>
-        </div>
-    </div>
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button onclick="press('-')">−</button>
 
-    <div class="movie-card">
-        <img src="images/opus.jpg/300x450" alt="Opus">
-            <div class="movie-title">Opus</div>
-            <div class="movie-links">
-                <a href="https://tv.apple.com/us/movie/opus/umc.cmc.1ty1mv0jtz0saiuklc5didh4q/" target="_blank">Watch on Apple TV</a>
-                    <a href="https://www.hbomax.com/movies/opus/1a5977b7-6df0-43aa-be50-2238c2536bc4/" target="_blank">Watch on HBO Max</a>
-                    <a href="https://www.youtube.com/watch?v=5owo-kbx8X0&t=2s/" target="_blank">
-                        <i class="fa-brands fa-youtube" style="color:red; margin-right:6px;"></i>
-                        Opus | Official Trailer HD | A24
-                    </a>
-            </div>
-        </div>
-    </div>
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button onclick="press('+')">+</button>
 
-    <div class="movie-card">
-        <img src="images/roundthedecay.jpg/300x450" alt="Round The Decay">
-            <div class="movie-title">Round The Decay</div>
-            <div class="movie-links">
-                <a href="https://www.imdb.com/title/tt28104012/" target="_blank">Full Synopsis</a>
-                    <a href="https://www.dreamscapeproductions.com/round-the-decay/" target="_blank">See More Info</a>
-                    <a href="https://www.youtube.com/watch?v=9AVuAb22WPk/" target="_blank">
-                        <i class="fa-brands fa-youtube" style="color:red; margin-right:6px;"></i>
-                        Round The Decay - Official Trailer
-                    </a>
-            </div>
-        </div>
-    </div>
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button onclick="calculate()" class="equal">=</button>
+
+<button onclick="press('0')" class="zero">0</button>
+<button onclick="press('.')">.</button>
+
+<button onclick="developer()" class="info">A</button>
+<button onclick="appInfo()" class="info">B</button>
 
 </div>
+
+</div>
+
+<script>
+
+let display = document.getElementById("display");
+
+function press(value){
+display.value += value;
+}
+
+function clearDisplay(){
+display.value="";
+}
+
+function backspace(){
+display.value = display.value.slice(0,-1);
+}
+
+function calculate(){
+try{
+display.value = eval(display.value);
+}
+catch{
+alert("Invalid Expression");
+}
+}
+
+function developer(){
+alert("Developer Information\n\nName: Vincent Ampong\nSchool: Northwestern Mindanao State College of Science and Technology");
+}
+
+function appInfo(){
+alert("Application Information\n\nStandard Calculator Web App\nVersion 1.0");
+}
+
+/* KEYBOARD SUPPORT */
+
+document.addEventListener("keydown", function(event){
+
+let key = event.key;
+
+if(!isNaN(key) || key === "."){
+press(key);
+}
+
+if(key === "+" || key === "-" || key === "*" || key === "/"){
+press(key);
+}
+
+if(key === "Enter"){
+calculate();
+}
+
+if(key === "Backspace"){
+backspace();
+}
+
+if(key === "Delete"){
+clearDisplay();
+}
+
+});
+
+</script>
 
 </body>
 </html>
