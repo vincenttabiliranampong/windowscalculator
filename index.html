@@ -65,6 +65,7 @@ background:#cccccc;
 .equal{
 background:#4CAF50;
 color:white;
+grid-row: span 2;
 }
 
 .info{
@@ -133,9 +134,6 @@ font-size:20px;
 <button class="info" onclick="appInfo()">B</button>
 <button class="operator" onclick="press('/')">/</button>
 
-<button></button>
-<button></button>
-<button></button>
 <button class="equal" onclick="calculate()">=</button>
 
 </div>
@@ -173,7 +171,7 @@ function appInfo(){
 alert("Application Information\n\nStandard Calculator Web App\nVersion 1.0");
 }
 
-/* KEYBOARD SUPPORT */
+/* Keyboard Support */
 
 document.addEventListener("keydown",function(e){
 
