@@ -19,6 +19,7 @@ justify-content:center;
 align-items:center;
 height:100vh;
 margin:0;
+flex-direction:column;
 }
 
 .calculator{
@@ -84,11 +85,33 @@ border:none;
 cursor:pointer;
 }
 
+/* Info display below calculator */
+
+.info-display{
+width:300px;
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:14px;
+}
+
+#devInfo{
+text-align:left;
+}
+
+#appInfo{
+text-align:right;
+}
+
 /* Responsive */
 
 @media (max-width:600px){
 
 .calculator{
+width:95%;
+}
+
+.info-display{
 width:95%;
 }
 
@@ -142,6 +165,13 @@ font-size:20px;
 
 </div>
 
+<!-- DISPLAY INFO BELOW CALCULATOR -->
+
+<div class="info-display">
+<div id="devInfo"></div>
+<div id="appInfo"></div>
+</div>
+
 <script>
 
 let display=document.getElementById("display");
@@ -164,11 +194,13 @@ display.value="";
 }
 
 function developer(){
-alert("Developer Information\n\nName: Vincent Ampong");
+document.getElementById("devInfo").innerHTML=
+"Developer: Vincent Ampong";
 }
 
 function appInfo(){
-alert("Application Information\n\nStandard Calculator Web App\nVersion 1.0");
+document.getElementById("appInfo").innerHTML=
+"Standard Calculator v1.0";
 }
 
 document.addEventListener("keydown",function(e){
@@ -201,5 +233,6 @@ clearDisplay();
 
 </body>
 </html>
+
 
 
