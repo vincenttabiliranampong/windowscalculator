@@ -180,12 +180,31 @@ function press(val){
 display.value+=val;
 }
 
+// NEW calculate function: left-to-right, no MDAS
 function calculate(){
 try{
-display.value=eval(display.value);
+    let exp = display.value;
+    if(!exp) return;
+
+    // Split numbers and operators
+    let numbers = exp.split(/[\+\-\*\/]/).map(Number);
+    let operators = exp.split('').filter(c => '+-*/'.includes(c));
+
+    let result = numbers[0];
+
+    for(let i=0; i<operators.length; i++){
+        let op = operators[i];
+        let num = numbers[i+1];
+        if(op === '+') result = result + num;
+        else if(op === '-') result = result - num;
+        else if(op === '*') result = result * num;
+        else if(op === '/') result = result / num;
+    }
+
+    display.value = result;
 }
 catch{
-alert("Invalid Expression");
+    alert("Invalid Expression");
 }
 }
 
@@ -233,6 +252,3 @@ clearDisplay();
 
 </body>
 </html>
-
-
-
